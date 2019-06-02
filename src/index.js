@@ -21,7 +21,7 @@ const ipfs = new IPFS({
 
 // IPFS node is ready, so we can start using ipfs-pubsub-room
 ipfs.on('ready', async () => {
-  const room = Room(ipfs, 'room-name')
+  const room = Room(ipfs, 'idm-chat-room')
 
   room.on('peer joined', (peer) => {
     console.log('Peer joined the room', peer)

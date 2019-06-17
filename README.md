@@ -1,4 +1,4 @@
-# IDM Chat App
+# IDM Chat app workshop
 
 This walk-through will guide you into the process of integrating IDM to provide authentication and signing into a simple decentralized chat app.
 
@@ -25,8 +25,8 @@ Be sure to have [Node.js](https://nodejs.org/download/) `^10.16.0` or greater in
 
 For this workshop, we will need to clone and run two projects:
 
-- [Nomios Web Wallet](https://github.com/ipfs-shipyard/nomios-web): The reference IDM wallet based on web technologies
-- [The Chat Dapp](https://github.com/ipfs-shipyard/workshop-idm-chat-dapp): The chat DApp that lives in this repository
+- [Nomios wallet](https://github.com/ipfs-shipyard/nomios-web): The reference IDM wallet based on web technologies
+- [Chat app](https://github.com/ipfs-shipyard/workshop-idm-chat-dapp): The chat app that lives in this repository
 
 Run the following commands to install and run both projects:
 
@@ -105,7 +105,7 @@ const setup = async () => {
 
 We are now creating a `idmBridge` instance, passing the `WALLET_URL` that we previously defined. We are also creating actual `idmClient` we will be using, passing the `idmBridge` as an argument. The `ipfs` node is also being passed to the `idmClient` so that we are able to resolve [DID-Documents](https://w3c-ccg.github.io/did-spec/#did-documents) based on [IPID](https://did-ipid.github.io/ipid-did-method/), which uses IPFS. Finally, the `idmClient` is passed to the `configure()` function so that our stores may get configured with it.
 
-> ⚠️ You must keep the Nomios wallet open ([http://localhost:3000](http://localhost:3000)) at all times. This limitation will be overcomed in a later release by levering ServiceWorkers.
+> ⚠️ You must keep the Nomios wallet open ([http://localhost:3000](http://localhost:3000)) at all times. This limitation will be overcomed in a later release by leveraging Service Workers.
 
 > ℹ️ In the future, we will automatically discover wallets without having to hardcode their URLs.
 
@@ -167,7 +167,7 @@ The `login()` function now calls `idmClient.authenticate()`, which prompts the u
 
 With just these small changes, we should be able to use the Nomios wallet to login & logout in and from the app. If you haven't created your identity yet, please create in Nomios.
 
-There's an issue though: if you refresh the app, you will be logged out 😭. Lets fix that by checking if we already logged in in the `configure()` function:
+There's an issue though: if you refresh the app, you will be logged out 😭. Lets fix that by checking if we already logged in the `configure()` function:
 
 ```js
 // src/stores/user.js

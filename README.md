@@ -8,14 +8,25 @@ The project was bootstrapped with [Create React App](https://github.com/facebook
 
 Follow the each step below to complete the workshop. At any time, you may check the final application in the [`with-idm`](https://github.com/ipfs-shipyard/workshop-idm-chat-dapp/compare/master...with-idm) branch if you are stuck or running into issues.
 
-1. [Installing](#1-installing)
-1. [Understanding the Chat app](#2-understanding-the-chat-app)
-1. [Setting up `idm-client` in the project](#3-setting-up-idm-client-in-the-project)
-1. [Integrate login & logout](#4-integrate-login--logout)
-1. [Integrate signing and verification of signatures](#5-integrate-signing-and-verification-of-signatures)
-    1. [Integrate signing and verification of signatures](#5-integrate-signing-and-verification-of-signatures)
+1. [Prerequisits](#1-prerequisits)
+1. [Installing](#2-installing)
+1. [Understanding the Chat app](#3-understanding-the-chat-app)
+1. [Setting up `idm-client` in the project](#4-setting-up-idm-client-in-the-project)
+1. [Integrate login & logout](#5-integrate-login--logout)
+1. [Integrate signing and verification of signatures](#6-integrate-signing-and-verification-of-signatures)
+    1. [Signing with the device key](#7-signing-with-the-device-key)
 
-### 1. Installing
+### 1. Prerequisits
+
+1. [`git`](https://git-scm.com/) must be installed on your machine.
+1. [Node.js](https://nodejs.org/download/) `^10.16.0`o r greater installed on your machine.
+
+    > ⚠️ Node `v12` is not yet supported as some libraries do not compile correctly.
+1. A modern browser, such as [Chrome](https://www.google.com/chrome) or [Firefox](https://www.mozilla.org/firefox/new/)
+1. A code editor, such as [Visual Code](https://code.visualstudio.com/), [Atom](https://atom.io/) or [Sublime](https://www.sublimetext.com/)
+
+
+### 2. Installing
 
 Be sure to have [Node.js](https://nodejs.org/download/) `^10.16.0` or greater installed on your machine.
 
@@ -42,7 +53,7 @@ $ cd workshop-idm-chat-dapp && npm i && npm start
 
 > 🙏 These commands may take a while, so please be patient.
 
-### 2. Understanding the Chat app
+### 3. Understanding the Chat app
 
 The [`index.js`](src/index.js) file is the main entry point. Its responsibility is to setup the app, initialize a IPFS node for the real-time chat, and to render the root [`App`](src/App.js) React component. The `App` component will be displaying a loading while the setup process is inflight and will only render the actual inner app when everything is ready. It also connects to the [`stores`](src/stores) so that parts of the app will re-render automatically whenever these stores' state change.
 
@@ -54,7 +65,7 @@ The Chat app should be running on `http://localhost:3500`, try it out! 🚀
 
 > ℹ️ Most of the code was kept simple so that it's easy to understand. As an example, we avoided using react hooks, functional components and state management libraries such as Redux.
 
-### 3. Setting up `idm-client` in the project
+### 4. Setting up `idm-client` in the project
 
 We need to install and setup a IDM Client, in order to interact with IDM based wallets. You may skip the install command below as both are already installed, but for reference you would type:
 
@@ -107,7 +118,7 @@ We are now creating an `idmBridge` instance, passing the `WALLET_URL` that we pr
 
 > ℹ️ In the future, we will automatically discover wallets without having to hardcode their URLs.
 
-### 4. Integrate login & logout
+### 5. Integrate login & logout
 
 As previously stated, the [`userStore`](src/stores/user.js) has two partially mocked functions that we need to work on. Lets start by storing a reference to the `idmClient` and listening to `onSessionChange` events:
 
@@ -184,7 +195,7 @@ export const configure = async (params) => {
 
 By leveraging `idmClient.isAuthenticated()` and `idmClient.getSession()`, we are now able to resume a previous session successfully 💪.
 
-### 5. Integrate signing and verification of signatures
+### 6. Integrate signing and verification of signatures
 
 The final part we are missing is to guarantee that messages can be cryptographically verified by others. This will ensure the authenticity of messages by checking if they were made by one of the public keys listed in the [DID-Document](https://w3c-ccg.github.io/did-spec/#did-documents).
 
@@ -232,7 +243,7 @@ const store = {
 
 That was easy huh? Now go test it, hurry!
 
-### 5.1. Signing with device key
+### 6.1. Signing with the device key
 
 The previous signing example was made using the session private key. This allows for non-intrusive signing use-cases where you do not want to prompt the user. Do you imagine using a chat app where we were prompting the user every-time a new message was typed? I certainly don't...
 

@@ -28,6 +28,8 @@ const store = {
             },
         };
 
+        console.log('Logged in!');
+
         onChange.dispatch(state);
     },
 
@@ -38,6 +40,8 @@ const store = {
             ...state,
             currentUser: undefined,
         };
+
+        console.log('Logged out!');
 
         onChange.dispatch(state);
     },

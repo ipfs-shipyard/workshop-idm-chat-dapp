@@ -223,7 +223,9 @@ const store = {
     verifyMessage: async (message) => {
         // ...
 
-        return idmClient.verifySignature(originalMessage, signature);
+        const result = idmClient.verifySignature(originalMessage, signature);
+
+        // ...
     },
 };
 ```

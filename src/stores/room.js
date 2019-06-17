@@ -116,14 +116,16 @@ const store = {
     verifyMessage: async (message) => {
         const { signature, ...originalMessage } = message;
 
-        console.log('Verifying message:', message);
-
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        return {
+        const result = {
             valid: true,
             error: undefined,
         };
+
+        console.log('Verification result:', result);
+
+        return result;
     },
 
     subscribe: (fn) => onChange.add(fn),

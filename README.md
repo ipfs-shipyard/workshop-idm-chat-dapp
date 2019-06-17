@@ -6,9 +6,7 @@ The project was bootstrapped with [Create React App](https://github.com/facebook
 
 ## Walk-through
 
-Follow the step-by-step walk-through below to complete the workshop.
-
-At any time, you may check the final application in the [`with-idm`](https://github.com/ipfs-shipyard/workshop-idm-chat-dapp/compare/master...with-idm) branch in case you are running into issues.
+Follow the each step below to complete the workshop. At any time, you may check the final application in the [`with-idm`](https://github.com/ipfs-shipyard/workshop-idm-chat-dapp/compare/master...with-idm) branch if you are stuck or running into issues.
 
 1. [Installing](#1-installing)
 1. [Understanding the Chat app](#2-understanding-the-chat-app)
@@ -19,7 +17,7 @@ At any time, you may check the final application in the [`with-idm`](https://git
 
 ### 1. Installing
 
-Be sure to have [Node.js](https://nodejs.org/download/) `^10.16.0` or greater installed your machine.
+Be sure to have [Node.js](https://nodejs.org/download/) `^10.16.0` or greater installed on your machine.
 
 > ⚠️ Node `v12` is not yet supported as some libraries do not compile correctly.
 
@@ -46,7 +44,7 @@ $ cd workshop-idm-chat-dapp && npm i && npm start
 
 ### 2. Understanding the Chat app
 
-The [`index.js`](src/index.js) file is the main entry point. Its responsability is to setup the app, initialze a IPFS node for the real-time chat, and to render the root [`App`](src/App.js) React component. The `App` component will be displaying a loading while the setup process is inflight and will only render the actual inner app when everything is ready. It also connects to the [`stores`](src/stores) so that parts of the app will re-render automatically whenever these stores' state change.
+The [`index.js`](src/index.js) file is the main entry point. Its responsibility is to setup the app, initialize a IPFS node for the real-time chat, and to render the root [`App`](src/App.js) React component. The `App` component will be displaying a loading while the setup process is inflight and will only render the actual inner app when everything is ready. It also connects to the [`stores`](src/stores) so that parts of the app will re-render automatically whenever these stores' state change.
 
 Feel free to peek at the rest of the React [`components`](src/components), but we will be mainly focusing on the [`stores`](src/stores) during the workshop.
 
@@ -235,7 +233,7 @@ That was easy huh? Now go test it, hurry!
 
 ### 5.1. Signing with device key
 
-The previous signing example was made using the session private key. This allows for non-intrusive signing use-cases where you do not want to prompt the user everytime. Do you imagine using a chat app where we were prompting the user everytime a new message was typed? I certainly don't...
+The previous signing example was made using the session private key. This allows for non-intrusive signing use-cases where you do not want to prompt the user. Do you imagine using a chat app where we were prompting the user every-time a new message was typed? I certainly don't...
 
 The trade-off here is that if someone gets access to the physical device and is able to bypass the built-in OS lock-screen (e.g.: by coercion), will see the raw session private keys because they are unencrypted. Anyone verifying signatures with those compromised session keys will see them as valid until the DID owner revokes that device from another IDM Wallet. Revoking a device key will automatically revoke all session keys because all session keys are childs of device keys.
 
@@ -266,7 +264,7 @@ See how we defined the `signWith` option in relation to the IPFS word been prese
 
 While IDM and Nomios are still in its infancy, this workshop was meant to showcase its potential and commitment to open-standards, such as [DIDs](https://w3c-ccg.github.io/did-spec) and [Verifiable Credentials](https://www.w3.org/TR/verifiable-claims-data-model/).
 
-If you are insterested in helping us or even just tracking progress, you may do so via:
+If you are interested in helping us or even just tracking progress, you may do so via:
 
 - Subscribing to Nomios newsletter in http://nomios.io
 - Chatting with us on `#ipfs` and `#ipfs-identity` IRC channels on freenode.net

@@ -13,9 +13,9 @@ At any time, you may check the final application in the [`with-idm`](https://git
 1. [Installing](#1-installing)
 1. [Understanding the Chat app](#2-understanding-the-chat-app)
 1. [Setting up `idm-client` in the project](#3-setting-up-idm-client-in-the-project)
-1. [Integrate login & logout](#4-integrate-signing-and-verification-of-signatures)
+1. [Integrate login & logout](#4-integrate-login--logout)
 1. [Integrate signing and verification of signatures](#5-integrate-signing-and-verification-of-signatures)
-    1.1 [Integrate signing and verification of signatures](#5-integrate-signing-and-verification-of-signatures)
+    1. [Integrate signing and verification of signatures](#5-integrate-signing-and-verification-of-signatures)
 
 ### 1. Installing
 
@@ -233,7 +233,7 @@ const store = {
 
 That was easy huh? Now go test it, hurry!
 
-### 5.1 Signing with device key
+### 5.1. Signing with device key
 
 The previous signing example was made using the session private key. This allows for non-intrusive signing use-cases where you do not want to prompt the user everytime. Do you imagine using a chat app where we were prompting the user everytime a new message was typed? I certainly don't...
 

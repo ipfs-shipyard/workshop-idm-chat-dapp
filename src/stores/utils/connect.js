@@ -6,10 +6,10 @@ const connect = (stores_) => (WrappedComponent) => {
         const [stores, setStores] = useState(stores_);
 
         useEffect(() => {
-            const unsubscribeStores = reduce(stores, (acc, store) => {
+            const unsubscribeStores = reduce(stores_, (acc, store) => {
                 const unsubscribe = store.subscribe(() => {
                     // Just to force a re-render
-                    setStores({ ...stores });
+                    setStores({ ...stores_ });
                 });
 
                 acc.push(unsubscribe);
@@ -20,7 +20,7 @@ const connect = (stores_) => (WrappedComponent) => {
             return () => {
                 unsubscribeStores.forEach((fn) => fn());
             };
-        }, [stores]);
+        }, []);
 
         const renderedComponent = useMemo(
             () => <WrappedComponent ref={ ref } { ...props } { ...stores } />,

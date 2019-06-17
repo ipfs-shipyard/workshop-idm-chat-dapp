@@ -116,6 +116,8 @@ const store = {
     verifyMessage: async (message) => {
         const { signature, ...originalMessage } = message;
 
+        console.log('Verifying message:', message);
+
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
         return {

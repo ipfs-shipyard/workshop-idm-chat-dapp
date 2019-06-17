@@ -109,7 +109,7 @@ We are now creating an `idmBridge` instance, passing the `WALLET_URL` that we pr
 
 ### 4. Integrate login & logout
 
-As previously stated, the [`userStore`](src/stores/user.js) has two partially mocked functions that we need to work on. Lets start by storing a reference to the `idmClient` in the `configure()` function:
+As previously stated, the [`userStore`](src/stores/user.js) has two partially mocked functions that we need to work on. Lets start by storing a reference to the `idmClient` and listening to `onSessionChange` events:
 
 ```js
 // src/stores/user.js
@@ -119,10 +119,21 @@ let idmClient;
 
 export const configure = async (params) => {
     idmClient = params.idmClient;
+
+    idmClient.onSessionChange((session) => {
+        state = {
+            ...state,
+            currentUser: session ? session.profileDetails : undefined,
+        };
+
+        onChange.dispatch(state);
+    });
 };
 ```
 
-Now that we have a reference to the `idmClient`, lets use it in the `login()` and `logout()` functions.
+The `onSessionChange` event fires whenever we the underlying session changes. This way we react not lot only when we login & logout, but also if the app (and its correspondent session) gets revoked by the user.
+
+Now that we have a reference to the `idmClient`, lets use it in the `login()` and `logout()` functions:
 
 ```js
 // src/stores/user.js
@@ -135,26 +146,12 @@ const store = {
         const session = await idmClient.authenticate();
 
         console.log('Logged in!', session);
-
-        state = {
-            ...state.currentUser,
-            currentUser: session.profileDetails,
-        };
-
-        onChange.dispatch(state);
     },
 
     logout: async () => {
         await idmClient.unauthenticate();
 
         console.log('Logged out!');
-
-        state = {
-            ...state,
-            currentUser: undefined,
-        };
-
-        onChange.dispatch(state);
     },
 
     // ...
@@ -163,23 +160,25 @@ const store = {
 
 The `login()` function now calls `idmClient.authenticate()`, which prompts the user to consent sending its [DID](https://w3c-ccg.github.io/did-spec/) and profile details to the app. If the user accepts, a unique session between the app and the wallet will be created. The returned `session` object contains the user DID and profile, among other fields. The profile may be one of the following schema.org types: [Person](https://schema.org/Person), [Organization](https://schema.org/Organization) or [Thing](https://schema.org/Thing).
 
+Note that we no longer need to update the store's `state` nor to dispatch a `onChange` event as the `idmClient` will fire a `onSessionChange` event for us, which we are already handling in the `configure()` function.
+
 With just these small changes, we should be able to use the Nomios wallet to login & logout in and from the app. If you haven't created your identity yet, please create it in Nomios.
 
-There's an issue though: if you refresh the app, you will be logged out 😭. Lets fix that by checking if we already logged in the `configure()` function:
+There's an issue though: if you refresh the app, you will be logged out 😭. Lets fix that by adding a check at `configure()` right before the line we subscribe to `onSessionChange`:
 
 ```js
 // src/stores/user.js
 export const configure = async (params) => {
-    idmClient = params.idmClient;
+    // ...
 
     if (idmClient.isAuthenticated()) {
-        const session = idmClient.getSession();
-
         state = {
-            ...state.currentUser,
-            currentUser: session.profileDetails,
+            ...state,
+            currentUser: idmClient.getSession().profileDetails,
         };
     }
+
+    // ...
 };
 ```
 
@@ -217,6 +216,7 @@ const store = {
         // ...
 
         message.signature = await idmClient.sign(message);
+
         // ...
     },
 

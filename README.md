@@ -137,7 +137,7 @@ export const configure = async (params) => {
 };
 ```
 
-The `onSessionChange` event fires whenever we the underlying session changes. This way we react not only when we login & logout, but also if the app (and it's corresponding session) gets revoked by the user.
+The `onSessionChange` callback that we registered is called whenever we the underlying session changes. This way we react not only when we login & logout, but also if the app (and it's corresponding session) gets revoked by the user.
 
 Now that we have a reference to the `idmClient`, lets use it in the `login()` and `logout()` functions:
 
@@ -166,7 +166,7 @@ const store = {
 
 The `login()` function now calls `idmClient.authenticate()`, which prompts the user to consent sending its [DID](https://w3c-ccg.github.io/did-spec/) and profile details to the app. If the user accepts, a unique session between the app and the wallet will be created. The returned `session` object contains the user DID and profile, among other fields. The profile may be one of the following schema.org types: [Person](https://schema.org/Person), [Organization](https://schema.org/Organization) or [Thing](https://schema.org/Thing).
 
-Note that we no longer need to update the store's `state` nor dispatch an `onChange` event as the `idmClient` will fire a `onSessionChange` event for us, which we are already handling in the `configure()` function.
+Note that we no longer need to update the store's `state` nor dispatch an `onChange` event as the `idmClient` will call the `onSessionChange` callback we registered ealier.
 
 With just these small changes, we should be able to use the Nomios wallet to login to the app & logout from the app. If you haven't created your identity yet, please create it in Nomios.
 

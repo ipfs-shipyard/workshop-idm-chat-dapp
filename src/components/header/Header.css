@@ -1,0 +1,110 @@
+.Header {
+    padding: 0 10px;
+    border-bottom: 1px solid #dedede;
+    background-color: #efefef;
+}
+
+.Header-wrapper {
+    max-width: 900px;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #212121;
+}
+
+.Header-logo {
+    flex: 0 0 auto;
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.Header-logotype {
+    margin-right: 10px;
+}
+
+.Header-auth {
+    padding-left: 15px;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+}
+
+.Header-userAvatar {
+    margin-right: 10px;
+}
+
+.Header-userName {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.Header-errorIcon {
+    margin-left: 15px;
+}
+
+.Header-button {
+    margin-left: 15px;
+}
+
+.Header-button[disabled]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.3;
+    background: #fff;
+}
+
+.Header-buttonProgress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -12px;
+    margin-left: -12px;
+}
+
+@media (max-width: 700px) {
+    .Header-userName {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    .Header-userName {
+        max-width: 125px;
+    }
+}
+
+@media (max-width: 525px) {
+    .Header-logotype {
+        display: none;
+    }
+
+    .Header-userName {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 475px) {
+    .Header-userAvatar {
+        display: none;
+    }
+}
+
+@media (max-width: 410px) {
+    .Header-userName {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 360px) {
+    .Header-userName {
+        max-width: 115px;
+    }
+}

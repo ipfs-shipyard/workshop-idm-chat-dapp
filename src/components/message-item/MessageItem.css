@@ -1,0 +1,110 @@
+.MessageItem {
+    margin-right: calc(60px + 12px);
+    display: flex;
+}
+
+.MessageItem {
+    margin-top: 20px;
+}
+
+.MessageItem:last-child {
+    margin-bottom: 20px;
+}
+
+.MessageItem.MessageItem-flipped {
+    margin-left: calc(60px + 12px);
+    margin-right: 0;
+    flex-direction: row-reverse;
+    align-self: flex-end;
+}
+
+.MessageItem.MessageItem-coalesced:not(:first-child) {
+    margin-top: 10px;
+}
+
+.MessageItem-authorAvatar {
+    width: 60px;
+    height: 60px;
+    margin: 0 12px 0 0;
+}
+
+.MessageItem.MessageItem-flipped .MessageItem-authorAvatar {
+    margin: 0 0 0 12px;
+}
+
+.MessageItem.MessageItem-coalesced .MessageItem-authorAvatar {
+    visibility: hidden;
+}
+
+.MessageItem-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.MessageItem.MessageItem-flipped .MessageItem-content {
+    align-items: flex-end;
+}
+
+.MessageItem-authorName {
+    margin-bottom: 10px;
+    color: #3a3a3a;
+    font-size: 16px;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.MessageItem.MessageItem-coalesced .MessageItem-authorName {
+    display: none;
+}
+
+.MessageItem-text {
+    padding: 12px 14px;
+    background-color: #aab6fe;
+    border-radius: 12px;
+    color: #121212;
+    font-size: 16px;
+    font-weight: 300;
+    word-break: break-word;
+}
+
+.MessageItem.MessageItem-flipped .MessageItem-text {
+    background-color: #5c6bc0;
+    color: #fff;
+}
+
+.MessageItem-info {
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+}
+
+.MessageItem.MessageItem-flipped .MessageItem-info {
+    flex-direction: row-reverse;
+}
+
+.MessageItem-date {
+    margin-left: 5px;
+    color: #7d7d7d;
+    font-size: 12px;
+}
+
+.MessageItem.MessageItem-flipped .MessageItem-date {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+@media (max-width: 500px) {
+    .MessageItem {
+        margin-right: calc(35px + 12px);
+    }
+
+    .MessageItem.MessageItem-flipped {
+        margin-left: calc(35px + 12px);
+        margin-right: 0;
+    }
+
+    .MessageItem-authorAvatar {
+        width: 35px;
+        height: 35px;
+    }
+}

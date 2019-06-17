@@ -1,46 +1,42 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
-import * as serviceWorker from './serviceWorker'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import IPFS from 'ipfs';
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { configure } from './stores';
+import './index.css';
+import App from './App';
 
-const Room = require('ipfs-pubsub-room')
-const IPFS = require('ipfs')
-const ipfs = new IPFS({
-  EXPERIMENTAL: {
-    pubsub: true
-  },
-  config: {
-    Addresses: {
-      Swarm: [
-        '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star'
-      ]
-    }
-  }
-})
+const setup = async () => {
+    // Setup IPFS
+    const ipfs = await new Promise((resolve, reject) => {
+        const node = new IPFS({
+            EXPERIMENTAL: {
+                pubsub: true,
+            },
+            config: {
+                Addresses: {
+                    Swarm: ['/dns4/ws-star1.par.dwebops.pub/tcp/443/wss/p2p-websocket-star'],
+                },
+            },
+        });
 
-// IPFS node is ready, so we can start using ipfs-pubsub-room
-ipfs.on('ready', async () => {
-  const room = Room(ipfs, 'idm-chat-room')
+        node.on('ready', () => resolve(node));
+        node.on('error', (err) => reject(err));
+    });
 
-  room.on('peer joined', (peer) => {
-    console.log('Peer joined the room', peer)
-  })
+    // Finally configure our stores
+    await configure({ ipfs });
+};
 
-  room.on('peer left', (peer) => {
-    console.log('Peer left...', peer)
-  })
+const jss = create({
+    ...jssPreset(),
+    insertionPoint: 'jss-insertion-point',
+});
 
-  // now started to listen to room
-  room.on('subscribed', () => {
-    console.log('Now connected!')
-  })
-
-  const peerId = await ipfs.id()
-  ReactDOM.render(<App room={room} peerId={peerId} />, document.getElementById('root'))
-})
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister()
+ReactDOM.render(
+    <StylesProvider jss={ jss }>
+        <App setupPromise={ setup() } />
+    </StylesProvider>,
+    document.getElementById('root')
+);

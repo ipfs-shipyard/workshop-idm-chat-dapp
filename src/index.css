@@ -1,14 +1,49 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+    font-family: "Roboto";
+    font-weight: 300;
+    font-style: normal;
+    src:
+        url("./assets/fonts/roboto-v19-cyrillic_greek-ext_cyrillic-ext_latin-ext_latin_greek_vietnamese-300.woff2") format("woff2"),
+        url("./assets/fonts/roboto-v19-cyrillic_greek-ext_cyrillic-ext_latin-ext_latin_greek_vietnamese-300.woff") format("woff");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@font-face {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-style: normal;
+    src:
+        url("./assets/fonts/roboto-v19-cyrillic_greek-ext_cyrillic-ext_latin-ext_latin_greek_vietnamese-regular.woff2") format("woff2"),
+        url("./assets/fonts/roboto-v19-cyrillic_greek-ext_cyrillic-ext_latin-ext_latin_greek_vietnamese-regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-style: normal;
+    src:
+        url("./assets/fonts/roboto-v19-cyrillic_greek-ext_cyrillic-ext_latin-ext_latin_greek_vietnamese-500.woff2") format("woff2"),
+        url("./assets/fonts/roboto-v19-cyrillic_greek-ext_cyrillic-ext_latin-ext_latin_greek_vietnamese-500.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 700;
+    font-style: normal;
+    src:
+        url("./assets/fonts/roboto-v19-cyrillic_greek-ext_cyrillic-ext_latin-ext_latin_greek_vietnamese-700.woff2") format("woff2"),
+        url("./assets/fonts/roboto-v19-cyrillic_greek-ext_cyrillic-ext_latin-ext_latin_greek_vietnamese-700.woff") format("woff");
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    overflow-wrap: break-word;
 }

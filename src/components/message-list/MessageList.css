@@ -1,0 +1,12 @@
+.MessageList {
+    overflow: auto;
+    margin: 0;
+    padding: 0 20px;
+    list-style: none;
+}
+
+@media (max-width: 500px) {
+    .MessageList {
+        padding: 10px;
+    }
+}

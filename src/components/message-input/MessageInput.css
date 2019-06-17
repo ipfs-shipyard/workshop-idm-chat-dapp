@@ -1,0 +1,13 @@
+.MessageInput {
+    display: flex;
+    align-items: center;
+}
+
+.MessageInput-input {
+    margin: 0 10px 0 0;
+    flex: 1 1 auto;
+}
+
+.MessageInput-button {
+    height: 40px;
+}

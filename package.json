@@ -1,21 +1,31 @@
 {
-  "name": "react-chat-tutorial",
+  "name": "workshop-idm-chat-dapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "ipfs": "^0.36.3",
+    "@material-ui/core": "^4.1.1",
+    "@material-ui/icons": "^4.2.0",
+    "classnames": "^2.2.6",
+    "delay": "^4.3.0",
+    "idm-bridge-postmsg": "^0.2.2",
+    "idm-client": "^0.2.0",
+    "ipfs": "git://github.com/satazor/js-ipfs.git#ipfs-camp",
     "ipfs-pubsub-room": "^1.4.1",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-scripts": "2.0.5",
-    "serve": "^11.0.1"
+    "lodash": "^4.17.11",
+    "nanoid": "^2.0.3",
+    "pico-signals": "^1.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-promiseful": "^2.0.0",
+    "react-scripts": "^3.0.1",
+    "react-time-ago": "^5.0.4"
   },
   "scripts": {
-    "start-dev": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start": "serve build -p 8090"
+    "eject": "react-scripts eject"
   },
   "browserslist": [
     ">0.2%",
@@ -24,6 +34,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-plugin-react": "^7.11.1"
+    "eslint": "^5.16.0",
+    "eslint-config-moxy": "^7.1.0",
+    "eslint-plugin-react": "^7.11.1",
+    "stylelint": "^10.1.0",
+    "stylelint-config-moxy": "^6.1.0"
   }
 }

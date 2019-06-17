@@ -1,0 +1,39 @@
+.MessageVerification {
+    height: 16px;
+    display: inline-flex;
+    color: #989898;
+}
+
+.MessageVerification-progress {
+    transform: scale(0.7);
+}
+
+.MessageVerification-icon {
+    font-size: 16px;
+}
+
+.MessageVerification-error {
+    position: relative;
+    height: 100%;
+}
+
+.MessageVerification-iconError {
+    transition: opacity 0.25s ease;
+}
+
+.MessageVerification-retry {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.MessageVerification-error:hover .MessageVerification-iconError {
+    opacity: 0;
+}
+
+.MessageVerification-error:hover > .MessageVerification-retry {
+    opacity: 1;
+}

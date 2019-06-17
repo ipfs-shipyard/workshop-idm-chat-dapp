@@ -6,7 +6,7 @@ The project was bootstrapped with [Create React App](https://github.com/facebook
 
 ## Walk-through
 
-Follow the each step below to complete the workshop. At any time, you may check the final application in the [`with-idm`](https://github.com/ipfs-shipyard/workshop-idm-chat-dapp/compare/master...with-idm) branch if you are stuck or running into issues.
+Follow each step below to complete the workshop. At any time, you may check the final application in the [`with-idm`](https://github.com/ipfs-shipyard/workshop-idm-chat-dapp/compare/master...with-idm) branch if you are stuck or running into issues.
 
 1. [Prerequisites](#1-prerequisites)
 1. [Installation](#2-installation)
@@ -50,15 +50,15 @@ $ cd workshop-idm-chat-dapp && npm i && npm start
 
 ### 3. Understanding the Chat app
 
-The [`index.js`](src/index.js) file is the main entry point. Its responsibility is to setup the app, initialize a IPFS node for the real-time chat, and to render the root [`App`](src/App.js) React component. The `App` component will be displaying a loading while the setup process is inflight and will only render the actual inner app when everything is ready. It also connects to the [`stores`](src/stores) so that parts of the app will re-render automatically whenever these stores' state change.
+The [`index.js`](src/index.js) file is the main entry point. Its responsibility is to setup the app, initialize an IPFS node for the real-time chat, and to render the root [`App`](src/App.js) React component. The `App` component will display a loading icon while the setup process is inflight and will only render the actual inner app when everything is ready. It also connects to the [`stores`](src/stores) so that parts of the app will re-render automatically whenever these stores' change state.
 
 Feel free to peek at the rest of the React [`components`](src/components), but we will be mainly focusing on the [`stores`](src/stores) during the workshop.
 
-There are two stores: the [`userStore`](src/stores/user.js) and the [`roomStore`](src/stores/room.js). As the names suggest, the `userStore` manages the current logged in user and export functions to `login()` and `logout()`, while the `roomStore` manages the room messages and peers and export functions to `sendMessage()` and `verifyMessage()`. These functions contain mocks that we will be re-implementing.
+There are two stores: the [`userStore`](src/stores/user.js) and the [`roomStore`](src/stores/room.js). As the names suggest, the `userStore` manages the current logged in user and exports functions to `login()` and `logout()`, while the `roomStore` manages the room messages and peers and exports functions to `sendMessage()` and `verifyMessage()`. These functions contain mocks that we will be re-implementing.
 
 The Chat app should be running on `http://localhost:3500`, try it out! 🚀
 
-> ℹ️ Most of the code was kept simple so that it's easy to understand. As an example, we avoided using react hooks, functional components and state management libraries such as Redux.
+> ℹ️ Most of the code was kept simple so that it's easy to understand. In this example, we avoided using react hooks, functional components and state management libraries such as Redux.
 
 ### 4. Setting up `idm-client` in the project
 
@@ -137,7 +137,7 @@ export const configure = async (params) => {
 };
 ```
 
-The `onSessionChange` event fires whenever we the underlying session changes. This way we react not lot only when we login & logout, but also if the app (and its correspondent session) gets revoked by the user.
+The `onSessionChange` event fires whenever we the underlying session changes. This way we react not only when we login & logout, but also if the app (and it's corresponding session) gets revoked by the user.
 
 Now that we have a reference to the `idmClient`, lets use it in the `login()` and `logout()` functions:
 
@@ -166,9 +166,9 @@ const store = {
 
 The `login()` function now calls `idmClient.authenticate()`, which prompts the user to consent sending its [DID](https://w3c-ccg.github.io/did-spec/) and profile details to the app. If the user accepts, a unique session between the app and the wallet will be created. The returned `session` object contains the user DID and profile, among other fields. The profile may be one of the following schema.org types: [Person](https://schema.org/Person), [Organization](https://schema.org/Organization) or [Thing](https://schema.org/Thing).
 
-Note that we no longer need to update the store's `state` nor to dispatch a `onChange` event as the `idmClient` will fire a `onSessionChange` event for us, which we are already handling in the `configure()` function.
+Note that we no longer need to update the store's `state` nor dispatch an `onChange` event as the `idmClient` will fire a `onSessionChange` event for us, which we are already handling in the `configure()` function.
 
-With just these small changes, we should be able to use the Nomios wallet to login & logout in and from the app. If you haven't created your identity yet, please create it in Nomios.
+With just these small changes, we should be able to use the Nomios wallet to login to the app & logout from the app. If you haven't created your identity yet, please create it in Nomios.
 
 There's an issue though: if you refresh the app, you will be logged out 😭. Lets fix that by adding a check at `configure()` right before the line we subscribe to `onSessionChange`:
 
@@ -194,7 +194,7 @@ By leveraging `idmClient.isAuthenticated()` and `idmClient.getSession()`, we are
 
 The final part we are missing is to guarantee that messages can be cryptographically verified by others. This will ensure the authenticity of messages by checking if they were made by one of the public keys listed in the [DID-Document](https://w3c-ccg.github.io/did-spec/#did-documents).
 
-> ⚠️ Because DIDs allow for "self-sovereign" digital identity, anyone may try to impersonate others by creating a fake profile. DIDs begin by being "trustless" in the sense that they don't directly provide meaningful identity attributes. But trust between DID-identified peers can be built up through the exchange of [Verifiable Credentials](https://www.w3.org/TR/verifiable-claims-data-model/) - credentials about identity attributes that include cryptographic proof. These proofs can be verified by reference to the issuer's DID and DID-Document.
+> ⚠️ Because DIDs allow for "self-sovereign" digital identity, someone could try to impersonate others by creating a fake profile. DIDs begin by being "trustless" in the sense that they don't directly provide meaningful identity attributes. But trust between DID-identified peers can be built up through the exchange of [Verifiable Credentials](https://www.w3.org/TR/verifiable-claims-data-model/) - credentials about identity attributes that include cryptographic proof. These proofs can be verified by reference to the issuer's DID and DID-Document.
 
 > ℹ️ Nomios will allow users to self-sign Verifiable Credentials proving they own certain profiles on social networks, similar to how [Keybase does](https://keybase.io/). As of today, many people trust the mainstream social networks, such as Facebook and Twitter, and identities may use them to post cryptographic proofs that link their profiles to a hash of their DID.
 
@@ -240,9 +240,9 @@ That was easy huh? Now go test it, hurry!
 
 #### 6.1. Signing with the device key
 
-The previous signing example was made using the session private key. This allows for non-intrusive signing use-cases where you do not want to prompt the user. Do you imagine using a chat app where we were prompting the user every-time a new message was typed? I certainly don't...
+The previous signing example was made using the session private key. This allows for non-intrusive signing use-cases where you do not want to prompt the user. Could you imagine using a chat app where you were prompted every-time a new message was typed? I certainly couldn't...
 
-The trade-off here is that if someone gets access to the physical device and is able to bypass the built-in OS lock-screen (e.g.: by coercion), will see the raw session private keys because they are unencrypted. Anyone verifying signatures with those compromised session keys will see them as valid until the DID owner revokes that device from another IDM Wallet. Revoking a device key will automatically revoke all session keys because all session keys are childs of device keys.
+The trade-off here is that if someone gets access to the physical device and is able to bypass the built-in OS lock-screen (e.g.: by coercion), will see the raw session private keys because they are unencrypted. Anyone verifying signatures with those compromised session keys will see them as valid until the DID owner revokes that device from another IDM Wallet. Revoking a device key will automatically revoke all session keys because all session keys are children of device keys.
 
 Anyway, there are use-cases where you may want a higher level of security, such as when deleting a chat room. In those scenarios, you may request signing with the device private key which is stored encrypted within the IDM Wallet.
 
@@ -269,11 +269,11 @@ See how we defined the `signWith` option in relation to the IPFS word been prese
 
 ## Interested in knowing more?
 
-While IDM and Nomios are still in its infancy, this workshop was meant to showcase its potential and commitment to open-standards, such as [DIDs](https://w3c-ccg.github.io/did-spec) and [Verifiable Credentials](https://www.w3.org/TR/verifiable-claims-data-model/).
+While IDM and Nomios are still in their infancy, this workshop is meant to showcase its potential and commitment to open-standards, such as [DIDs](https://w3c-ccg.github.io/did-spec) and [Verifiable Credentials](https://www.w3.org/TR/verifiable-claims-data-model/).
 
 If you are interested in helping us or even just tracking progress, you may do so via:
 
-- Subscribing to Nomios newsletter on http://nomios.io
+- Subscribing to the Nomios newsletter at http://nomios.io
 - Chatting with us on `#ipfs` and `#ipfs-identity` IRC channels on freenode.net
 - Attending our bi-weekly progress calls - https://github.com/ipfs-shipyard/pm-idm/issues?q=progress+label%3Aprogress-call
 

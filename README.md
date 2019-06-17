@@ -8,29 +8,24 @@ The project was bootstrapped with [Create React App](https://github.com/facebook
 
 Follow the each step below to complete the workshop. At any time, you may check the final application in the [`with-idm`](https://github.com/ipfs-shipyard/workshop-idm-chat-dapp/compare/master...with-idm) branch if you are stuck or running into issues.
 
-1. [Prerequisits](#1-prerequisits)
-1. [Installing](#2-installing)
+1. [Prerequisites](#1-prerequisites)
+1. [Installation](#2-installation)
 1. [Understanding the Chat app](#3-understanding-the-chat-app)
 1. [Setting up `idm-client` in the project](#4-setting-up-idm-client-in-the-project)
 1. [Integrate login & logout](#5-integrate-login--logout)
 1. [Integrate signing and verification of signatures](#6-integrate-signing-and-verification-of-signatures)
-    1. [Signing with the device key](#7-signing-with-the-device-key)
+    1. [Signing with the device key](#61-signing-with-the-device-key)
 
-### 1. Prerequisits
+### 1. Prerequisites
 
-1. [`git`](https://git-scm.com/) must be installed on your machine.
-1. [Node.js](https://nodejs.org/download/) `^10.16.0`o r greater installed on your machine.
+- [`git`](https://git-scm.com/) installed on your machine.
+- [Node.js](https://nodejs.org/download/) `^10.16.0` or greater installed on your machine.
 
     > ⚠️ Node `v12` is not yet supported as some libraries do not compile correctly.
-1. A modern browser, such as [Chrome](https://www.google.com/chrome) or [Firefox](https://www.mozilla.org/firefox/new/)
-1. A code editor, such as [Visual Code](https://code.visualstudio.com/), [Atom](https://atom.io/) or [Sublime](https://www.sublimetext.com/)
+- A modern browser, such as [Chrome](https://www.google.com/chrome) or [Firefox](https://www.mozilla.org/firefox/new/).
+- A code editor, such as [Visual Code](https://code.visualstudio.com/), [Atom](https://atom.io/) or [Sublime](https://www.sublimetext.com/).
 
-
-### 2. Installing
-
-Be sure to have [Node.js](https://nodejs.org/download/) `^10.16.0` or greater installed on your machine.
-
-> ⚠️ Node `v12` is not yet supported as some libraries do not compile correctly.
+### 2. Installation
 
 For this workshop, we will need to clone and run two projects:
 
@@ -51,7 +46,7 @@ $ git clone git@github.com:ipfs-shipyard/workshop-idm-chat-dapp.git
 $ cd workshop-idm-chat-dapp && npm i && npm start
 ```
 
-> 🙏 These commands may take a while, so please be patient.
+> 🙏 These commands may take a while, please be patient.
 
 ### 3. Understanding the Chat app
 
@@ -243,7 +238,7 @@ const store = {
 
 That was easy huh? Now go test it, hurry!
 
-### 6.1. Signing with the device key
+#### 6.1. Signing with the device key
 
 The previous signing example was made using the session private key. This allows for non-intrusive signing use-cases where you do not want to prompt the user. Do you imagine using a chat app where we were prompting the user every-time a new message was typed? I certainly don't...
 

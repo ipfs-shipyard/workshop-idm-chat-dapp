@@ -56,7 +56,7 @@ The Chat app should be running on `http://localhost:3500`, try it out! 🚀
 
 ### 3. Setting up `idm-client` in the project
 
-In order to interact with IDM based wallets, we need to install and setup a IDM Client. You may skip the install command below as both are already installed, but for reference you would type:
+We need to install and setup a IDM Client, in order to interact with IDM based wallets. You may skip the install command below as both are already installed, but for reference you would type:
 
 ```sh
 npm i idm-client idm-bridge-postmsg
@@ -101,9 +101,9 @@ const setup = async () => {
 });
 ```
 
-We are now creating a `idmBridge` instance, passing the `WALLET_URL` that we previously defined. We are also creating actual `idmClient` we will be using, passing the `idmBridge` as an argument. The `ipfs` node is also being passed to the `idmClient` so that we are able to resolve [DID-Documents](https://w3c-ccg.github.io/did-spec/#did-documents) based on [IPID](https://did-ipid.github.io/ipid-did-method/), which uses IPFS. Finally, the `idmClient` is passed to the `configure()` function so that our stores may get configured with it.
+We are now creating an `idmBridge` instance, passing the `WALLET_URL` that we previously defined. We are also creating actual `idmClient` we will be using, passing the `idmBridge` as an argument. The `ipfs` node is also being passed to the `idmClient` so that we are able to resolve [DID-Documents](https://w3c-ccg.github.io/did-spec/#did-documents) based on [IPID](https://did-ipid.github.io/ipid-did-method/), which uses IPFS. Finally, the `idmClient` is passed to the `configure()` function so that our stores may get configured with it.
 
-> ⚠️ You must keep the Nomios wallet open ([http://localhost:3000](http://localhost:3000)) at all times. This limitation will be overcomed in a later release by leveraging Service Workers.
+> ⚠️ You must keep the Nomios wallet open ([http://localhost:3000](http://localhost:3000)) at all times. This limitation will be overcome in a later release by leveraging Service Workers.
 
 > ℹ️ In the future, we will automatically discover wallets without having to hardcode their URLs.
 
@@ -163,7 +163,7 @@ const store = {
 
 The `login()` function now calls `idmClient.authenticate()`, which prompts the user to consent sending its [DID](https://w3c-ccg.github.io/did-spec/) and profile details to the app. If the user accepts, a unique session between the app and the wallet will be created. The returned `session` object contains the user DID and profile, among other fields. The profile may be one of the following schema.org types: [Person](https://schema.org/Person), [Organization](https://schema.org/Organization) or [Thing](https://schema.org/Thing).
 
-With just these small changes, we should be able to use the Nomios wallet to login & logout in and from the app. If you haven't created your identity yet, please create in Nomios.
+With just these small changes, we should be able to use the Nomios wallet to login & logout in and from the app. If you haven't created your identity yet, please create it in Nomios.
 
 There's an issue though: if you refresh the app, you will be logged out 😭. Lets fix that by checking if we already logged in the `configure()` function:
 

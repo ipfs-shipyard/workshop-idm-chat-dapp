@@ -1,5 +1,4 @@
 import signal from 'pico-signals';
-import pDelay from 'delay';
 
 const onChange = signal();
 
@@ -17,7 +16,7 @@ const store = {
     },
 
     login: async () => {
-        await pDelay(1000);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         state = {
             ...state.currentUser,
@@ -33,7 +32,7 @@ const store = {
     },
 
     logout: async () => {
-        await pDelay(1000);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         state = {
             ...state,

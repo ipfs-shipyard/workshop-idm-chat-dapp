@@ -2,7 +2,6 @@ import signal from 'pico-signals';
 import nanoid from 'nanoid';
 import { omit } from 'lodash';
 import createPubsubRoom from 'ipfs-pubsub-room';
-import pDelay from 'delay';
 import userStore from './user';
 
 let pubsubRoom;
@@ -115,7 +114,7 @@ const store = {
     verifyMessage: async (message) => {
         const { signature, ...actualMessage } = message;
 
-        await pDelay(1000);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         return {
             valid: true,

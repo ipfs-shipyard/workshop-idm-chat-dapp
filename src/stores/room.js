@@ -4,6 +4,7 @@ import { omit } from 'lodash';
 import createPubsubRoom from 'ipfs-pubsub-room';
 import userStore from './user';
 
+let idmClient;
 let pubsubRoom;
 const onChange = signal();
 
@@ -14,6 +15,8 @@ let state = {
 };
 
 export const configure = async (params) => {
+    idmClient = params.idmClient;
+
     pubsubRoom = createPubsubRoom(params.ipfs, 'IDM_CHAT_APP');
 
     pubsubRoom
@@ -103,7 +106,9 @@ const store = {
             timestamp: Date.now(),
         };
 
-        message.signature = {};
+        message.signature = await idmClient.sign(message, {
+            signWith: /\bipfs\b/i.test(message.text) ? 'device' : 'session',
+        });
 
         console.log('Sending message:', message);
 
@@ -116,12 +121,7 @@ const store = {
     verifyMessage: async (message) => {
         const { signature, ...originalMessage } = message;
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        const result = {
-            valid: true,
-            error: undefined,
-        };
+        const result = await idmClient.verifySignature(originalMessage, signature);
 
         console.log('Verification result:', result);
 

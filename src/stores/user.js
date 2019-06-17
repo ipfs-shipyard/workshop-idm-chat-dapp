@@ -1,5 +1,6 @@
 import signal from 'pico-signals';
 
+let idmClient;
 const onChange = signal();
 
 let state = {
@@ -7,7 +8,23 @@ let state = {
 };
 
 export const configure = async (params) => {
+    idmClient = params.idmClient;
 
+    if (idmClient.isAuthenticated()) {
+        state = {
+            ...state,
+            currentUser: idmClient.getSession().profileDetails,
+        };
+    }
+
+    idmClient.onSessionChange((session) => {
+        state = {
+            ...state,
+            currentUser: session ? session.profileDetails : undefined,
+        };
+
+        onChange.dispatch(state);
+    });
 };
 
 const store = {
@@ -16,34 +33,15 @@ const store = {
     },
 
     login: async () => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const session = await idmClient.authenticate();
 
-        state = {
-            ...state.currentUser,
-            currentUser: {
-                '@context': 'https://schema.org/',
-                '@type': 'Person',
-                identifier: `did:xxx:${Math.round(Math.random() * 100000000000000).toString(36)}`,
-                name: 'John Doe',
-            },
-        };
-
-        console.log('Logged in!');
-
-        onChange.dispatch(state);
+        console.log('Logged in!', session);
     },
 
     logout: async () => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        state = {
-            ...state,
-            currentUser: undefined,
-        };
+        await idmClient.unauthenticate();
 
         console.log('Logged out!');
-
-        onChange.dispatch(state);
     },
 
     subscribe: (fn) => onChange.add(fn),

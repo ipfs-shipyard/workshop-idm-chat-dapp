@@ -41,7 +41,7 @@ class MessageVerification extends Component {
                             </span>
                         ) }
                         { status === 'rejected' && (
-                            <Tooltip title={ value.message }>
+                            <Tooltip title={ `${value.code ? `${value.code} - ` : ''}${value.message}` }>
                                 <span className="MessageVerification-error">
                                     <ErrorIcon color="error" className="MessageVerification-icon MessageVerification-iconError" />
                                     <IconButton className="MessageVerification-retry" onClick={ this.handleRetryClick }>

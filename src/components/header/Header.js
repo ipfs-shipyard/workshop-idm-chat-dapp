@@ -57,7 +57,7 @@ class Header extends PureComponent {
                     { ({ status, value }) => (
                         <>
                             { status === 'rejected' && (
-                                <Tooltip title={ value.message }>
+                                <Tooltip title={ `${value.code ? `${value.code} - ` : ''}${value.message}` }>
                                     <ErrorIcon color="error" className="Header-errorIcon" />
                                 </Tooltip>
                             ) }
@@ -88,7 +88,7 @@ class Header extends PureComponent {
                 { ({ status, value }) => (
                     <>
                         { status === 'rejected' && (
-                            <Tooltip title={ value.message }>
+                            <Tooltip title={ `${value.code ? `${value.code} - ` : ''}${value.message}` }>
                                 <ErrorIcon color="error" className="Header-errorIcon" />
                             </Tooltip>
                         ) }

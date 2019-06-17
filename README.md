@@ -163,7 +163,7 @@ const store = {
 };
 ```
 
-The `login()` function now calls `idmClient.authenticate()`, which prompts the user to consent sending its [DID](https://w3c-ccg.github.io/did-spec/) and profile details to the app. If the user accepts, a unique session between the app and the wallet will be created. The returned `session` object contains the user DID and profile, among other fields. The profile may be one of the following schema.org types: [Person](https://schema.org/Person), [Organization](https://schema.org/Organization) or [Thing](https://schema.org/Thing)).
+The `login()` function now calls `idmClient.authenticate()`, which prompts the user to consent sending its [DID](https://w3c-ccg.github.io/did-spec/) and profile details to the app. If the user accepts, a unique session between the app and the wallet will be created. The returned `session` object contains the user DID and profile, among other fields. The profile may be one of the following schema.org types: [Person](https://schema.org/Person), [Organization](https://schema.org/Organization) or [Thing](https://schema.org/Thing).
 
 With just these small changes, we should be able to use the Nomios wallet to login & logout in and from the app. If you haven't created your identity yet, please create in Nomios.
 

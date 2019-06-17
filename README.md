@@ -238,13 +238,15 @@ const store = {
 
 That was easy huh? Now go test it, hurry!
 
+If you want to know more about the signing and verifications process, you may read the Motivation section of the [idm-signatures](https://github.com/ipfs-shipyard/js-idm-signatures#motivation) repository.
+
 #### 6.1. Signing with the device key
 
 The previous signing example was made using the session private key. This allows for non-intrusive signing use-cases where you do not want to prompt the user. Could you imagine using a chat app where you were prompted every-time a new message was typed? I certainly couldn't...
 
-The trade-off here is that if someone gets access to the physical device and is able to bypass the built-in OS lock-screen (e.g.: by coercion), will see the raw session private keys because they are unencrypted. Anyone verifying signatures with those compromised session keys will see them as valid until the DID owner revokes that device from another IDM Wallet. Revoking a device key will automatically revoke all session keys because all session keys are children of device keys.
+The trade-off here is that if someone gets access to the physical device and is able to bypass the built-in OS lock-screen (e.g.: by coercion), that person will see the raw session private keys because they are unencrypted. Anyone verifying signatures with those compromised session keys will see them as valid until the DID owner revokes that device from another IDM Wallet. Revoking a device key will automatically revoke all session keys because all session keys are children of device keys.
 
-Anyway, there are use-cases where you may want a higher level of security, such as when deleting a chat room. In those scenarios, you may request signing with the device private key which is stored encrypted within the IDM Wallet.
+There are use-cases where you may want a higher level of security, such as when deleting a chat room. In those scenarios, you may request signing with the device private key which is stored encrypted within the IDM Wallet.
 
 But we are not going to implement a "Delete room" feature in our app. Instead, we will be doing something easier but cooler 😎: lets sign with the device whenever the message's text contains the word "IPFS".
 

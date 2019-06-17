@@ -105,6 +105,8 @@ const store = {
 
         message.signature = {};
 
+        console.log('Sending message:', message);
+
         pubsubRoom.broadcast(JSON.stringify({
             type: 'NEW_MESSAGE',
             message,
@@ -112,7 +114,7 @@ const store = {
     },
 
     verifyMessage: async (message) => {
-        const { signature, ...actualMessage } = message;
+        const { signature, ...originalMessage } = message;
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
 

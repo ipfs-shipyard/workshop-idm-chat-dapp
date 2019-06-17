@@ -217,7 +217,6 @@ const store = {
         // ...
 
         message.signature = await idmClient.sign(message);
-
         // ...
     },
 
@@ -266,7 +265,7 @@ While IDM and Nomios are still in its infancy, this workshop was meant to showca
 
 If you are interested in helping us or even just tracking progress, you may do so via:
 
-- Subscribing to Nomios newsletter in http://nomios.io
+- Subscribing to Nomios newsletter on http://nomios.io
 - Chatting with us on `#ipfs` and `#ipfs-identity` IRC channels on freenode.net
 - Attending our bi-weekly progress calls - https://github.com/ipfs-shipyard/pm-idm/issues?q=progress+label%3Aprogress-call
 

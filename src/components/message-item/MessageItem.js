@@ -30,12 +30,12 @@ class MessageItem extends PureComponent {
                     src={ message.author.image }
                     size="large"
                     className="MessageItem-authorAvatar">
-                    { (message.author.name || 'Nameless').substr(0, 1) }
+                    { message.author.name.substr(0, 1) }
                 </Avatar>
 
                 <div className="MessageItem-content">
                     <div className="MessageItem-authorName">
-                        { message.author.name || 'Nameless' }
+                        { message.author.name }
                     </div>
 
                     <div className="MessageItem-text">

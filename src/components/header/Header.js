@@ -46,11 +46,11 @@ class Header extends PureComponent {
         return (
             <>
                 <Avatar src={ currentUser.image } className="Header-userAvatar">
-                    { (currentUser.name || 'Nameless').substr(0, 1) }
+                    { currentUser.name.substr(0, 1) }
                 </Avatar>
 
                 <div className="Header-userName">
-                    { currentUser.name || 'Nameless' }
+                    { currentUser.name }
                 </div>
 
                 <PromiseState promise={ promise }>

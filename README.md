@@ -107,7 +107,7 @@ const setup = async () => {
 });
 ```
 
-We are now creating an `idmBridge` instance, passing the `WALLET_URL` that we previously defined. We are also creating actual `idmClient` we will be using, passing the `idmBridge` as an argument. The `ipfs` node is also being passed to the `idmClient` so that we are able to resolve [DID-Documents](https://w3c-ccg.github.io/did-spec/#did-documents) based on [IPID](https://did-ipid.github.io/ipid-did-method/), which uses IPFS. Finally, the `idmClient` is passed to the `configure()` function so that our stores may get configured with it.
+Before creating the actual `idmClient`, we are initializing the `idmBridge` based on the postMessage API and passing `WALLET_URL` to its factory. The `idmClient` is then created using the `APP` details, the `idmBridge` and the `ipfs` node we already had in place. That IPFS node will be used by the IDM Client to resolve [DID-Documents](https://w3c-ccg.github.io/did-spec/#did-documents) based on [IPID](https://did-ipid.github.io/ipid-did-method/). Finally, the created `idmClient` is passed to the `configure()` function so that our stores may use it internally.
 
 > ⚠️ You must keep the Nomios wallet open ([http://localhost:3000](http://localhost:3000)) at all times. This limitation will be overcome in a later release by leveraging Service Workers.
 
@@ -137,7 +137,7 @@ export const configure = async (params) => {
 };
 ```
 
-The `onSessionChange` callback that we registered is called whenever we the underlying session changes. This way we react not only when we login & logout, but also if the app (and it's corresponding session) gets revoked by the user.
+The `onSessionChange` callback we registered is called whenever the underlying session changes. This way we react not only when we login & logout, but also if the app (and its corresponding session) gets revoked by the user.
 
 Now that we have a reference to the `idmClient`, lets use it in the `login()` and `logout()` functions:
 
@@ -170,7 +170,7 @@ Note that we no longer need to update the store's `state` nor dispatch an `onCha
 
 With just these small changes, we should be able to use the Nomios wallet to login to the app & logout from the app. If you haven't created your identity yet, please create it in Nomios.
 
-There's an issue though: if you refresh the app, you will be logged out 😭. Lets fix that by adding a check at `configure()` right before the line we subscribe to `onSessionChange`:
+There's an issue though: if you refresh the app, you will be logged out 😭. Lets fix that by adding a check at `configure()` right before the line where we subscribe to `onSessionChange`:
 
 ```js
 // src/stores/user.js
@@ -194,7 +194,7 @@ By leveraging `idmClient.isAuthenticated()` and `idmClient.getSession()`, we are
 
 The final part we are missing is to guarantee that messages can be cryptographically verified by others. This will ensure the authenticity of messages by checking if they were made by one of the public keys listed in the [DID-Document](https://w3c-ccg.github.io/did-spec/#did-documents).
 
-> ⚠️ Because DIDs allow for "self-sovereign" digital identity, someone could try to impersonate others by creating a fake profile. DIDs begin by being "trustless" in the sense that they don't directly provide meaningful identity attributes. But trust between DID-identified peers can be built up through the exchange of [Verifiable Credentials](https://www.w3.org/TR/verifiable-claims-data-model/) - credentials about identity attributes that include cryptographic proof. These proofs can be verified by reference to the issuer's DID and DID-Document.
+> ⚠️ Because DIDs allow for "self-sovereign" digital identity, someone could try to impersonate others by creating a fake profiles. DIDs begin by being "trustless" in the sense that they don't directly provide meaningful identity attributes. But trust between DID-identified peers can be built up through the exchange of [Verifiable Credentials](https://www.w3.org/TR/verifiable-claims-data-model/) - credentials about identity attributes that include cryptographic proof. These proofs can be verified by reference to the issuer's DID and DID-Document.
 
 > ℹ️ Nomios will allow users to self-sign Verifiable Credentials proving they own certain profiles on social networks, similar to how [Keybase does](https://keybase.io/). As of today, many people trust the mainstream social networks, such as Facebook and Twitter, and identities may use them to post cryptographic proofs that link their profiles to a hash of their DID.
 
@@ -273,15 +273,15 @@ See how we defined the `signWith` option in relation to the IPFS word been prese
 
 While IDM and Nomios are still in their infancy, this workshop is meant to showcase its potential and commitment to open-standards, such as [DIDs](https://w3c-ccg.github.io/did-spec) and [Verifiable Credentials](https://www.w3.org/TR/verifiable-claims-data-model/).
 
-If you are interested in helping us or even just tracking progress, you may do so via:
-
-- Subscribing to the Nomios newsletter at http://nomios.io
-- Chatting with us on `#ipfs` and `#ipfs-identity` IRC channels on freenode.net
-- Attending our bi-weekly progress calls - https://github.com/ipfs-shipyard/pm-idm/issues?q=progress+label%3Aprogress-call
-
-Here are few references if you want to know more:
+Here are some references if you want to know more:
 
 - Project management repository on GitHub - https://github.com/ipfs-shipyard/pm-idm
 - IDM Concept document - https://github.com/ipfs-shipyard/pm-idm/blob/master/docs/idm-concept.md
 - IDM Specification document - https://github.com/ipfs-shipyard/pm-idm/blob/master/docs/idm-spec.md
 - IDM & Nomios codebase - https://github.com/ipfs-shipyard/pm-idm#codebase
+
+If you are interested in helping us or even just tracking progress, you may do so via:
+
+- Subscribing to the Nomios newsletter at http://nomios.io
+- Chatting with us on `#ipfs` and `#ipfs-identity` IRC channels on freenode.net
+- Attending our bi-weekly progress calls - https://github.com/ipfs-shipyard/pm-idm/issues?q=progress+label%3Aprogress-call

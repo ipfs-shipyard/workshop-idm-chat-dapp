@@ -8,6 +8,26 @@
     flex: 1 1 auto;
 }
 
+.MessageInput-buttonWrapper {
+    position: relative;
+}
+
 .MessageInput-button {
+    min-width: 75px;
     height: 40px;
+}
+
+.MessageInput-errorIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.MessageInput-buttonProgress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -12px;
+    margin-left: -12px;
 }

@@ -65,15 +65,11 @@ class App extends Component {
                         className="App-messageList" />
                     <MessageInput
                         currentUser={ userStore.state.currentUser }
-                        onSend={ this.handleSend } />
+                        sendMessage={ roomStore.sendMessage } />
                 </div>
             </div>
         );
     }
-
-    handleSend = (text) => {
-        this.props.roomStore.sendMessage(text);
-    };
 
     handleSetupPromiseSettle = ({ status, value }) => {
         if (status === 'rejected') {

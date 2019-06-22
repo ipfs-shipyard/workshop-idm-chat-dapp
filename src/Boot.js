@@ -7,7 +7,7 @@ import './Boot.css';
 
 class Boot extends Component {
     render() {
-        const { promise, children } = this.props;
+        const { promise } = this.props;
 
         return (
             <PromiseState
@@ -17,7 +17,7 @@ class Boot extends Component {
                     switch (status) {
                     case 'pending': return this.renderLoading();
                     case 'rejected': return this.renderError(value);
-                    case 'fulfilled': return children;
+                    case 'fulfilled': return this.renderSuccess(value);
                     default: return null;
                     }
                 } }

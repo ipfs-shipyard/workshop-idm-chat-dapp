@@ -9,8 +9,8 @@ const ConnectedIpfsUrl = (props) => {
 };
 
 ConnectedIpfsUrl.defaultProps = {
-    strategy: 'ipfs-offline-first',
-    checkTimeouts: {
+    strategy: 'ipfs-first',
+    checkTimeout: {
         ipfs: 15000,
     },
 };

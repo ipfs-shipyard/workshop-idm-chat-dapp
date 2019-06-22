@@ -50,7 +50,9 @@ $ cd workshop-idm-chat-dapp && npm i && npm start
 
 ### 3. Understanding the Chat app
 
-The [`index.js`](src/index.js) file is the main entry point. Its responsibility is to setup the app, initialize an IPFS node for the real-time chat, and to render the root [`App`](src/App.js) React component. The `App` component will display a loading icon while the setup process is inflight and will only render the actual inner app when everything is ready. It also connects to the [`stores`](src/stores) so that parts of the app will re-render automatically whenever these stores' change state.
+The [`index.js`](src/index.js) file is the main entry point. Its responsibility is to setup the app, initialize an IPFS node for the real-time chat, and to render the root [`<Boot>`](src/Boot.js) & [`<App>`](src/App.js) React components.
+
+The `<Boot>` component will display a loading icon while the setup process is inflight and an error message if the setup process failed. The `<App>` component will only be rendered once the setup process finishes successfully. It also connects to all the [`stores`](src/stores) so that parts of the app will re-render automatically whenever these stores' change state.
 
 Feel free to peek at the rest of the React [`components`](src/components), but we will be mainly focusing on the [`stores`](src/stores) during the workshop.
 

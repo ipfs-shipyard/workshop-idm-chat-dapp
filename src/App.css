@@ -4,12 +4,6 @@
     flex-direction: column;
 }
 
-.App.App-error,
-.App.App-loading {
-    justify-content: center;
-    align-items: center;
-}
-
 .App-room {
     position: relative;
     width: 100%;

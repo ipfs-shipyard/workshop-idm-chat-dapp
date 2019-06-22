@@ -5,6 +5,7 @@ import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import { configure } from './stores';
 import './index.css';
+import Boot from './Boot';
 import App from './App';
 
 const setup = async () => {
@@ -27,6 +28,8 @@ const setup = async () => {
 
     // Finally configure our stores
     await configure({ ipfs });
+
+    return ipfs;
 };
 
 const jss = create({
@@ -36,7 +39,9 @@ const jss = create({
 
 ReactDOM.render(
     <StylesProvider jss={ jss }>
-        <App setupPromise={ setup() } />
+        <Boot promise={ setup() }>
+            <App />
+        </Boot>
     </StylesProvider>,
     document.getElementById('root')
 );

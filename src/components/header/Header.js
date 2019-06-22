@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { PromiseState } from 'react-promiseful';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import PeopleIcon from '@material-ui/icons/People';
 import Tooltip from '@material-ui/core/Tooltip';
 import ErrorIcon from '@material-ui/icons/Error';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { IpfsAvatar } from '../ipfs';
 import './Header.css';
 
 class Header extends PureComponent {
@@ -45,9 +45,9 @@ class Header extends PureComponent {
 
         return (
             <>
-                <Avatar src={ currentUser.image } className="Header-userAvatar">
+                <IpfsAvatar src={ currentUser.image } className="Header-userAvatar">
                     { currentUser.name.substr(0, 1) }
-                </Avatar>
+                </IpfsAvatar>
 
                 <div className="Header-userName">
                     { currentUser.name }

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import TimeAgo from 'react-time-ago';
 import timeAgo from 'javascript-time-ago';
 import timeAgoEnLocale from 'javascript-time-ago/locale/en';
-import Avatar from '@material-ui/core/Avatar';
+import { IpfsAvatar } from '../ipfs';
 import MessageVerification from '../message-verification';
 import './MessageItem.css';
 
@@ -26,12 +26,12 @@ class MessageItem extends PureComponent {
                     'MessageItem-coalesced': coalesced,
                 }, className) }>
 
-                <Avatar
+                <IpfsAvatar
                     src={ message.author.image }
                     size="large"
                     className="MessageItem-authorAvatar">
                     { message.author.name.substr(0, 1) }
-                </Avatar>
+                </IpfsAvatar>
 
                 <div className="MessageItem-content">
                     <div className="MessageItem-authorName">

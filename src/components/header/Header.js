@@ -23,7 +23,7 @@ class Header extends PureComponent {
             <div className={ classNames('Header', className) }>
                 <div className="Header-wrapper">
                     <div className="Header-logo">
-                        <span className="Header-logotype">IDM Chat</span>
+                        <span className="Header-logotype">Example Chat</span>
 
                         <Badge badgeContent={ peersCount } showZero>
                             <PeopleIcon />

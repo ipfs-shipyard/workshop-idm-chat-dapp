@@ -119,8 +119,8 @@ const store = {
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
         const result = {
-            valid: true,
-            error: undefined,
+            valid: false,
+            error: new Error('This is a dummy signature'),
         };
 
         console.log('Verification result:', result);

@@ -1,6 +1,6 @@
 {
-  "short_name": "IDM Chat Demo",
-  "name": "IDM Chat Demo",
+  "short_name": "Example Chat App",
+  "name": "Example Chat App",
   "icons": [
     {
       "src": "favicon.ico",

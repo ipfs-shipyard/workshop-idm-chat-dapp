@@ -10,7 +10,7 @@ Follow each step below to complete the workshop. At any time, you may check the 
 
 1. [Prerequisites](#1-prerequisites)
 1. [Installation](#2-installation)
-1. [Understanding the Chat app](#3-understanding-the-chat-app)
+1. [Understanding the chat app](#3-understanding-the-chat-app)
 1. [Setting up `idm-client` in the project](#4-setting-up-idm-client-in-the-project)
 1. [Integrate login & logout](#5-integrate-login--logout)
 1. [Integrate signing and verification of signatures](#6-integrate-signing-and-verification-of-signatures)
@@ -27,18 +27,7 @@ Follow each step below to complete the workshop. At any time, you may check the 
 
 ### 2. Installation
 
-For this workshop, we will need to clone and run two projects:
-
-- [Nomios wallet](https://github.com/ipfs-shipyard/nomios-web): The reference IDM wallet based on web technologies
-- [Chat app](https://github.com/ipfs-shipyard/workshop-idm-chat-dapp): The chat app that lives in this repository
-
-Run the following commands to install and run both projects:
-
-```sh
-# On terminal 1
-$ git clone git@github.com:ipfs-shipyard/nomios-web.git
-$ cd nomios-web && npm i && npm start
-```
+For this workshop, we will need to clone this repository, install the dependencies and run it:
 
 ```sh
 # On terminal 2
@@ -48,7 +37,7 @@ $ cd workshop-idm-chat-dapp && npm i && npm start
 
 > 🙏 These commands may take a while, please be patient.
 
-### 3. Understanding the Chat app
+### 3. Understanding the chat app
 
 The [`index.js`](src/index.js) file is the main entry point. Its responsibility is to setup the app, initialize an IPFS node for the real-time chat, and to render the root [`<Boot>`](src/Boot.js) & [`<App>`](src/App.js) React components.
 
@@ -58,7 +47,7 @@ Feel free to peek at the rest of the React [`components`](src/components), but w
 
 There are two stores: the [`userStore`](src/stores/user.js) and the [`roomStore`](src/stores/room.js). As the names suggest, the `userStore` manages the current logged in user and exports functions to `login()` and `logout()`, while the `roomStore` manages the room messages and peers and exports functions to `sendMessage()` and `verifyMessage()`. These functions contain mocks that we will be re-implementing.
 
-The Chat app should be running on `http://localhost:3500`, try it out! 🚀
+The chat app should be running on `http://localhost:3500`, try it out! 🚀
 
 > ℹ️ Most of the code was kept simple so that it's easy to understand. In this example, we avoided using react hooks, functional components and state management libraries such as Redux.
 
@@ -81,9 +70,9 @@ import { createClientSide } from 'idm-bridge-postmsg';
 
 // ...
 
-const WALLET_URL = 'http://localhost:3000';
+const WALLET_URL = 'https://demo.nomios.io';
 const APP = {
-    name: 'Chat demo app',
+    name: 'Example Chat App',
     homepageUrl: window.location.origin,
     iconUrl: `${window.location.href}favicon.ico`,
 };

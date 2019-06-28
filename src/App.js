@@ -10,9 +10,6 @@ class App extends Component {
     render() {
         const { userStore, roomStore } = this.props;
 
-        console.log('userState', userStore.state);
-        console.log('roomState', roomStore.state);
-
         return (
             <div className="App">
                 <Header

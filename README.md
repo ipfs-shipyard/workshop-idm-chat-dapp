@@ -27,10 +27,9 @@ Follow each step below to complete the workshop. At any time, you may check the 
 
 ### 2. Installation
 
-For this workshop, we will need to clone this repository, install the dependencies and run it:
+Simply clone this repository, install the dependencies and run the app locally:
 
 ```sh
-# On terminal 2
 $ git clone git@github.com:ipfs-shipyard/workshop-idm-chat-dapp.git
 $ cd workshop-idm-chat-dapp && npm i && npm start
 ```

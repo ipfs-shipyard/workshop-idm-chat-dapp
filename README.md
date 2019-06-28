@@ -99,7 +99,7 @@ const setup = async () => {
 
 Before creating the actual `idmClient`, we are initializing the `idmBridge` based on the postMessage API and passing `WALLET_URL` to its factory. The `idmClient` is then created using the `APP` details, the `idmBridge` and the `ipfs` node we already had in place. That IPFS node will be used by the IDM Client to resolve [DID-Documents](https://w3c-ccg.github.io/did-spec/#did-documents) based on [IPID](https://did-ipid.github.io/ipid-did-method/). Finally, the created `idmClient` is passed to the `configure()` function so that our stores may use it internally.
 
-> ⚠️ You must keep the Nomios wallet open ([http://localhost:3000](http://localhost:3000)) at all times. This limitation will be overcome in a later release by leveraging Service Workers.
+> ⚠️ You must keep the Nomios wallet open ([https://demo.nomios.io](https://demo.nomios.io)) at all times. This limitation will be overcome in a later release by leveraging Service Workers.
 
 > ℹ️ In the future, we will automatically discover wallets without having to hardcode their URLs.
 

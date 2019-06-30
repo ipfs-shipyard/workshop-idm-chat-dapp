@@ -1,6 +1,6 @@
 # IDM Chat app workshop
 
-This walk-through will guide you into the process of integrating IDM to provide authentication and signing into a simple decentralized chat app.
+This walk-through will guide you into the process of integrating IDM to provide authentication and signing into a simple decentralized chat app. There're [introductory slides](https://docs.google.com/presentation/d/1HbydOI0w-T_FY23zCACAyHmzDq1ZvyG2tklpPSm6OQQ/edit?usp=sharing) that talk about underlying standards IDM uses, such as DIDs and Verifiable Credentials.
 
 The project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

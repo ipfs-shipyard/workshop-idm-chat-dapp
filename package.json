@@ -11,7 +11,7 @@
     "ipfs": "git://github.com/satazor/js-ipfs.git#ipfs-camp",
     "ipfs-pubsub-room": "^1.4.1",
     "lodash": "^4.17.11",
-    "nanoid": "^2.0.3",
+    "nanoid": "^3.1.31",
     "pico-signals": "^1.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
